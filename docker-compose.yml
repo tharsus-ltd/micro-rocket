@@ -1,0 +1,51 @@
+version: "3.9"
+
+services:
+  user_manager:
+    build: ../ur-user-manager/.
+    container_name: user_manager
+    ports:
+      - "8001:80"
+    depends_on:
+      - "user_man_db"
+      - "rabbitmq"
+    environment:
+      - MAX_WORKERS=1
+      - REDIS_SERVICE=user_man_db
+      - SERVICE_NAME=User Manager
+      - ROOT_PATH=/
+      - SECRET_KEY=e9629f658c37859ab9d74680a3480b99265c7d4c89224280cb44a255c320661f
+
+  rocket_manager:
+    build: ../ur-rocket-manager/.
+    container_name: rocket_manager
+    ports:
+      - "8002:80"
+    depends_on:
+      - "rocket_man_db"
+      - "rabbitmq"
+    environment:
+      - MAX_WORKERS=1
+      - REDIS_SERVICE=rocket_man_db
+      - SERVICE_NAME=Rocket Manager
+      - ROOT_PATH=/
+      - MIN_ENGINES=1
+      - MAX_ENGINES=8
+      - MIN_HEIGHT=50
+      - MAX_HEIGHT=600
+
+  rabbitmq:
+    image: "rabbitmq:3-management"
+    container_name: "rabbitmq"
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+  # Storage
+  user_man_db:
+    container_name: "user_man_db"
+    image: "redis:alpine"
+
+  rocket_man_db:
+    container_name: "rocket_man_db"
+    image: "redis:alpine"
