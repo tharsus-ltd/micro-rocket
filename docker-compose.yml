@@ -28,6 +28,7 @@ services:
       - MAX_WORKERS=1
       - REDIS_SERVICE=rocket_man_db
       - SERVICE_NAME=Rocket Manager
+      - USER_URL=http://localhost:8001/token
       - ROOT_PATH=/
       - MIN_ENGINES=1
       - MAX_ENGINES=8
