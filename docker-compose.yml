@@ -32,8 +32,8 @@ services:
       - ROOT_PATH=/
       - MIN_ENGINES=1
       - MAX_ENGINES=8
-      - MIN_HEIGHT=50
-      - MAX_HEIGHT=600
+      - MIN_HEIGHT=20
+      - MAX_HEIGHT=200
 
   rabbitmq:
     image: "rabbitmq:3-management"
