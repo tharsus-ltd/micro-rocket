@@ -14,6 +14,7 @@ services:
       - REDIS_SERVICE=user_man_db
       - SERVICE_NAME=User Manager
       - ROOT_PATH=/
+      - STARTUP_TIME=15
       - SECRET_KEY=e9629f658c37859ab9d74680a3480b99265c7d4c89224280cb44a255c320661f
 
   rocket_manager:
@@ -34,10 +35,20 @@ services:
       - MAX_ENGINES=8
       - MIN_HEIGHT=20
       - MAX_HEIGHT=200
+      - STARTUP_TIME=15
+
+  junk_manager:
+    build: ../ur-junk-manager/.
+    container_name: junk_manager
+    depends_on:
+      - "rabbitmq"
+    environment:
+      - STARTUP_TIME=15
 
   rabbitmq:
     image: "rabbitmq:3-management"
     container_name: "rabbitmq"
+    hostname: "rabbitmq"
     ports:
       - "5672:5672"
       - "15672:15672"
