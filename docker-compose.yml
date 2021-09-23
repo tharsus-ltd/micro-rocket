@@ -37,9 +37,9 @@ services:
       - MAX_HEIGHT=200
       - STARTUP_TIME=15
       - RF_DENSITY=750
-      - WALL_THICKNESS=0.06
+      - WALL_THICKNESS=0.1
       - TIME_DELTA=1.0
-      - MASS_FLOW=1500
+      - MASS_FLOW=500
 
   junk_manager:
     build: ../ur-junk-manager/.
