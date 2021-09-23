@@ -8,8 +8,9 @@ To get up and running, simply clone this repo locally and docker compose up.
 
 ## Services
 
-There are 3 services that make up the application:
+There are 4 services that make up the application:
 
-1. [Rocket Manager](https://github.com/tharsus-ltd/ur-rocket-manager)
-2. [User Manager](https://github.com/tharsus-ltd/ur-user-manager)
-3. [Frontend UI](https://github.com/tharsus-ltd/ur-frontend)
+- [User Manager](https://github.com/tharsus-ltd/ur-user-manager) (API Docs: <http://localhost:8001/docs>)
+- [Rocket Manager](https://github.com/tharsus-ltd/ur-rocket-manager) (API Docs: <http://localhost:8002/docs>)
+- [Frontend UI](https://github.com/tharsus-ltd/ur-frontend)
+- [Junk Manager](https://github.com/tharsus-ltd/ur-junk-manager)
