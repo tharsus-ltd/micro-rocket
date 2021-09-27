@@ -1,10 +1,10 @@
-# Micro Rocket 🚀
+# Micro Rockets 🚀
 
 Micro rocket is a small example implementation of a microservice application. It's a game, where you launch rocket's into space and hope that asteroids don't hit them!
 
 ## Running locally
 
-To get up and running, simply clone this repo locally and docker compose up.
+To get up and running, simply clone this repo locally and docker compose up and head over to <http://localhost/>.
 
 ## Services
 

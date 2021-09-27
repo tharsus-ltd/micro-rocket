@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   user_manager:
-    build: ../ur-user-manager/.
+    image: nicholasdmartin/micro-rocket-user_manager:0.0.1
     container_name: user_manager
     ports:
       - "8001:80"
@@ -18,7 +18,7 @@ services:
       - SECRET_KEY=e9629f658c37859ab9d74680a3480b99265c7d4c89224280cb44a255c320661f
 
   rocket_manager:
-    build: ../ur-rocket-manager/.
+    image: nicholasdmartin/micro-rocket-rocket_manager:0.0.2
     container_name: rocket_manager
     ports:
       - "8002:80"
@@ -42,15 +42,16 @@ services:
       - MASS_FLOW=500
 
   junk_manager:
-    build: ../ur-junk-manager/.
+    image: nicholasdmartin/micro-rocket-junk_manager:0.0.1
     container_name: junk_manager
     depends_on:
       - "rabbitmq"
     environment:
       - STARTUP_TIME=15
+      - JUNK_PROBABILITY=95
 
   frontend:
-    build: ../ur-frontend./
+    image: nicholasdmartin/micro-rocket-frontend:0.0.2
     container_name: frontend
     ports:
       - "80:5000"
