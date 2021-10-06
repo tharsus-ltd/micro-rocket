@@ -1,6 +1,6 @@
 # Micro Rockets 🚀
 
-Micro rocket is a small example implementation of a microservice application. It's a game, where you launch rocket's into space and hope that asteroids don't hit them!
+Micro rocket is a small example implementation of a microservice application. It's a game, where you launch rocket's into space and hope that space junk doesn't hit them!
 
 ## Running locally
 
