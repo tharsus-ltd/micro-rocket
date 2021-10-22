@@ -5,10 +5,10 @@ services:
     image: nicholasdmartin/micro-rocket-user_manager:0.0.1
     container_name: user_manager
     ports:
-      - "8001:80"
+      - 8001:80
     depends_on:
-      - "user_man_db"
-      - "rabbitmq"
+      - user_man_db
+      - rabbitmq
     environment:
       - MAX_WORKERS=1
       - REDIS_SERVICE=user_man_db
@@ -21,10 +21,10 @@ services:
     image: nicholasdmartin/micro-rocket-rocket_manager:0.0.2
     container_name: rocket_manager
     ports:
-      - "8002:80"
+      - 8002:80
     depends_on:
-      - "rocket_man_db"
-      - "rabbitmq"
+      - rocket_man_db
+      - rabbitmq
     environment:
       - MAX_WORKERS=1
       - REDIS_SERVICE=rocket_man_db
@@ -45,7 +45,7 @@ services:
     image: nicholasdmartin/micro-rocket-junk_manager:0.0.1
     container_name: junk_manager
     depends_on:
-      - "rabbitmq"
+      - rabbitmq
     environment:
       - STARTUP_TIME=15
       - JUNK_PROBABILITY=95
@@ -54,18 +54,18 @@ services:
     image: nicholasdmartin/micro-rocket-frontend:0.0.2
     container_name: frontend
     ports:
-      - "80:5000"
+      - 80:5000
     depends_on:
-      - "rocket_manager"
-      - "user_manager"
+      - rocket_manager
+      - user_manager
 
   rabbitmq:
     image: "rabbitmq:3-management"
     container_name: "rabbitmq"
     hostname: "rabbitmq"
     ports:
-      - "5672:5672"
-      - "15672:15672"
+      - 5672:5672
+      - 15672:15672
 
   # Storage
   user_man_db:
@@ -75,3 +75,19 @@ services:
   rocket_man_db:
     container_name: "rocket_man_db"
     image: "redis:alpine"
+
+  # Telemetry
+  jaeger:
+    container_name: "jaeger"
+    image: jaegertracing/all-in-one:1.27
+    environment:
+      - COLLECTOR_ZIPKIN_HOST_PORT=9411
+    ports:
+      - 5775:5775/udp
+      - 6831:6831/udp
+      - 6832:6832/udp
+      - 5778:5778
+      - 16686:16686
+      - 14268:14268
+      - 14250:14250
+      - 9411:9411
