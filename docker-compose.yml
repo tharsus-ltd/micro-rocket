@@ -13,7 +13,6 @@ services:
       - MAX_WORKERS=1
       - REDIS_SERVICE=user_man_db
       - SERVICE_NAME=User Manager
-      - ROOT_PATH=/
       - STARTUP_TIME=15
       - SECRET_KEY=e9629f658c37859ab9d74680a3480b99265c7d4c89224280cb44a255c320661f
 
@@ -30,7 +29,6 @@ services:
       - REDIS_SERVICE=rocket_man_db
       - SERVICE_NAME=Rocket Manager
       - USER_URL=http://localhost:8001/token
-      - ROOT_PATH=/
       - MIN_ENGINES=1
       - MAX_ENGINES=8
       - MIN_HEIGHT=20
@@ -54,7 +52,7 @@ services:
     image: nicholasdmartin/micro-rocket-frontend:0.0.2
     container_name: frontend
     ports:
-      - 80:5000
+      - 5000:5000
     depends_on:
       - rocket_manager
       - user_manager
@@ -91,3 +89,18 @@ services:
       - 14268:14268
       - 14250:14250
       - 9411:9411
+
+  # Proxy
+  nginx:
+    image: opentracing/nginx-opentracing
+    container_name: nginx
+    depends_on:
+      - frontend
+      - user_manager
+      - rocket_manager
+      - jaeger
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./jaeger-config-nginx.json:/etc/jaeger-config.json
+    ports:
+      - 80:80
