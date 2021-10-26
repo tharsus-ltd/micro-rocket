@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   user_manager:
-    image: nicholasdmartin/micro-rocket-user_manager:0.0.1
+    image: nicholasdmartin/micro-rocket-user_manager:main
     container_name: user_manager
     ports:
       - 8001:80
@@ -10,6 +10,7 @@ services:
       - user_man_db
       - rabbitmq
     environment:
+      - ROOT_PATH=/user-manager
       - MAX_WORKERS=1
       - REDIS_SERVICE=user_man_db
       - SERVICE_NAME=User Manager
@@ -17,7 +18,7 @@ services:
       - SECRET_KEY=e9629f658c37859ab9d74680a3480b99265c7d4c89224280cb44a255c320661f
 
   rocket_manager:
-    image: nicholasdmartin/micro-rocket-rocket_manager:0.0.2
+    image: nicholasdmartin/micro-rocket-rocket_manager:main
     container_name: rocket_manager
     ports:
       - 8002:80
@@ -25,6 +26,7 @@ services:
       - rocket_man_db
       - rabbitmq
     environment:
+      - ROOT_PATH=/rocket-manager
       - MAX_WORKERS=1
       - REDIS_SERVICE=rocket_man_db
       - SERVICE_NAME=Rocket Manager
@@ -40,7 +42,7 @@ services:
       - MASS_FLOW=500
 
   junk_manager:
-    image: nicholasdmartin/micro-rocket-junk_manager:0.0.1
+    image: nicholasdmartin/micro-rocket-junk_manager:main
     container_name: junk_manager
     depends_on:
       - rabbitmq
@@ -49,7 +51,7 @@ services:
       - JUNK_PROBABILITY=95
 
   frontend:
-    image: nicholasdmartin/micro-rocket-frontend:0.0.2
+    image: nicholasdmartin/micro-rocket-frontend:main
     container_name: frontend
     ports:
       - 5000:5000
