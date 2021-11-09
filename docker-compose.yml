@@ -14,7 +14,6 @@ services:
       - MAX_WORKERS=1
       - REDIS_SERVICE=user_man_db
       - SERVICE_NAME=User Manager
-      - STARTUP_TIME=2
       - SECRET_KEY=e9629f658c37859ab9d74680a3480b99265c7d4c89224280cb44a255c320661f
 
   rocket_manager:
@@ -47,7 +46,7 @@ services:
     depends_on:
       - rabbitmq
     environment:
-      - STARTUP_TIME=20
+      - STARTUP_TIME=2
       - JUNK_PROBABILITY=5
       - JUNK_ALT_MIN=10000
       - JUNK_ALT_MAX=1200000
