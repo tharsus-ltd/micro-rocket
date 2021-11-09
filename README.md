@@ -1,11 +1,14 @@
 # Micro Rockets 🚀
 
-Micro rocket is a small example implementation of a microservice application. It's a game, where you launch rocket's into space and hope that space junk doesn't hit them!
+Micro rocket is a small example implementation of a microservice application. It's a game, where you launch rockets into space and hope that space junk doesn't hit them!
 
 ## Running locally
 
 To get up and running, simply clone this repo locally and docker compose up and head over to <http://localhost/>.
 
+## Tracing
+
+To help work out what is happening in the live system, there is a distributed tracing service available at <http://localhost:16686/>.
 ## Services
 
 There are 4 services that make up the application:
